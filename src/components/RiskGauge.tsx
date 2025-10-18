@@ -45,7 +45,7 @@ const RiskGauge = ({ percentage }: RiskGaugeProps) => {
           x="100"
           y="75"
           textAnchor="middle"
-          className="text-5xl font-bold"
+          className="text-3xl font-bold"
           fill={riskColor}
         >
           {animatedPercentage}%
