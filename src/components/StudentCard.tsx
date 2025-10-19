@@ -19,12 +19,12 @@ const StudentCard = ({ name, riskLevel }: StudentCardProps) => {
   };
 
   return (
-    <div className={`${bgColors[riskLevel]} border rounded-xl p-4 hover:shadow-md transition-all duration-300 hover:scale-105 cursor-pointer`}>
-      <div className="flex flex-col items-center space-y-3">
-        <div className={`${riskColors[riskLevel]} p-3 bg-background rounded-full`}>
-          <GraduationCap className="w-8 h-8" />
+    <div className={`${bgColors[riskLevel]} border rounded-xl p-3 sm:p-4 hover:shadow-md transition-all duration-300 hover:scale-105 cursor-pointer`}>
+      <div className="flex flex-col items-center space-y-2 sm:space-y-3">
+        <div className={`${riskColors[riskLevel]} p-2 sm:p-3 bg-background rounded-full`}>
+          <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8" />
         </div>
-        <p className="text-sm font-medium text-foreground text-center">{name}</p>
+        <p className="text-xs sm:text-sm font-medium text-foreground text-center">{name}</p>
       </div>
     </div>
   );

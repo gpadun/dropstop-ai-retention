@@ -9,15 +9,15 @@ const Header = () => {
           <img 
             src={logoDropStop} 
             alt="DropStop Logo" 
-            className="h-32 w-auto"
+            className="h-20 sm:h-28 md:h-32 w-auto"
           />
         </div>
         
-        <div className="flex items-center gap-3">
-          <Button variant="ghost" size="lg" className="text-foreground hover:bg-accent">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Button variant="ghost" size="sm" className="text-foreground hover:bg-accent text-xs sm:text-sm md:text-base px-2 sm:px-4">
             Entrar
           </Button>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md">
+          <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md text-xs sm:text-sm md:text-base px-2 sm:px-4">
             Cadastrar
           </Button>
         </div>
