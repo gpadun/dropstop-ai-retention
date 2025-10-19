@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import logoDropStop from "@/assets/logo-dropstop.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -14,12 +15,16 @@ const Header = () => {
         </div>
         
         <div className="flex items-center gap-2 sm:gap-3">
-          <Button variant="ghost" size="sm" className="text-foreground hover:bg-accent text-xs sm:text-sm md:text-base px-2 sm:px-4">
-            Entrar
-          </Button>
-          <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md text-xs sm:text-sm md:text-base px-2 sm:px-4">
-            Cadastrar
-          </Button>
+          <Link to="/login">
+            <Button variant="ghost" size="sm" className="text-foreground hover:bg-accent text-xs sm:text-sm md:text-base px-2 sm:px-4">
+              Entrar
+            </Button>
+          </Link>
+          <Link to="/login">
+            <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md text-xs sm:text-sm md:text-base px-2 sm:px-4">
+              Cadastrar
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
