@@ -45,7 +45,7 @@ const RiskGauge = ({ percentage }: RiskGaugeProps) => {
           x="100"
           y="75"
           textAnchor="middle"
-          className="text-3xl font-bold"
+          className="text-xl font-bold"
           fill={riskColor}
         >
           {animatedPercentage}%
@@ -54,7 +54,7 @@ const RiskGauge = ({ percentage }: RiskGaugeProps) => {
           x="100"
           y="95"
           textAnchor="middle"
-          className="text-sm"
+          className="text-xs"
           fill="#1E1E1E"
         >
           em risco de evasão

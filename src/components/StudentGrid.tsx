@@ -7,7 +7,7 @@ const students = [
   { name: "Carlos Santos", riskLevel: "high" as const },
   { name: "Maria Oliveira", riskLevel: "high" as const },
   { name: "João Costa", riskLevel: "high" as const },
-  { name: "Pedro Alves", riskLevel: "medium" as const },
+  { name: "Pedro Alves", riskLevel: "high" as const },
   { name: "Julia Ferreira", riskLevel: "low" as const },
   { name: "Lucas Souza", riskLevel: "low" as const },
   { name: "Beatriz Lima", riskLevel: "low" as const },

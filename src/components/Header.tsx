@@ -9,7 +9,7 @@ const Header = () => {
           <img 
             src={logoDropStop} 
             alt="DropStop Logo" 
-            className="h-24 w-auto"
+            className="h-32 w-auto"
           />
         </div>
         
