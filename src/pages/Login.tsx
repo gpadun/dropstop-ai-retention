@@ -4,16 +4,38 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Shield } from "lucide-react";
 import logoDropStop from "@/assets/logo-dropstop.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Login logic will be implemented here
-    console.log("Login attempt:", { email, password });
+    
+    // Validação simples - qualquer valor não vazio
+    if (email.trim() && password.trim()) {
+      // Simula login bem-sucedido
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("institutionName", "Escola Exemplo");
+      
+      toast({
+        title: "Login realizado com sucesso!",
+        description: "Redirecionando para o dashboard...",
+      });
+      
+      // Redireciona para o dashboard
+      navigate("/dashboard");
+    } else {
+      toast({
+        title: "Erro no login",
+        description: "Por favor, preencha todos os campos.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
