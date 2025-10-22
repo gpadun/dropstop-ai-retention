@@ -6,36 +6,59 @@ import { Shield } from "lucide-react";
 import logoDropStop from "@/assets/logo-dropstop.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const loginSchema = z.object({
+  email: z.string()
+    .min(1, "Email ou CNPJ é obrigatório")
+    .refine((val) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+      return emailRegex.test(val) || cnpjRegex.test(val);
+    }, "Email inválido. Use um formato válido (exemplo@dominio.com) ou CNPJ formatado"),
+  password: z.string().min(6, "Senha deve ter no mínimo 6 caracteres")
+});
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const navigate = useNavigate();
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
     
-    // Validação simples - qualquer valor não vazio
-    if (email.trim() && password.trim()) {
-      // Simula login bem-sucedido
-      localStorage.setItem("isAuthenticated", "true");
-      localStorage.setItem("institutionName", "Escola Exemplo");
-      
-      toast({
-        title: "Login realizado com sucesso!",
-        description: "Redirecionando para o dashboard...",
+    // Validação com Zod
+    const result = loginSchema.safeParse({ email, password });
+    
+    if (!result.success) {
+      const formattedErrors: { email?: string; password?: string } = {};
+      result.error.issues.forEach((err) => {
+        if (err.path[0] === "email") formattedErrors.email = err.message;
+        if (err.path[0] === "password") formattedErrors.password = err.message;
       });
+      setErrors(formattedErrors);
       
-      // Redireciona para o dashboard
-      navigate("/dashboard");
-    } else {
       toast({
-        title: "Erro no login",
-        description: "Por favor, preencha todos os campos.",
+        title: "Erro na validação",
+        description: "Por favor, corrija os campos destacados.",
         variant: "destructive",
       });
+      return;
     }
+    
+    // Simula login bem-sucedido
+    localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("institutionName", "Escola Exemplo");
+    
+    toast({
+      title: "Login realizado com sucesso!",
+      description: "Redirecionando para o dashboard...",
+    });
+    
+    navigate("/dashboard");
   };
 
   return (
@@ -75,8 +98,11 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="h-11"
+                className={`h-11 ${errors.email ? "border-destructive" : ""}`}
               />
+              {errors.email && (
+                <p className="text-sm text-destructive">{errors.email}</p>
+              )}
             </div>
 
             {/* Senha */}
@@ -91,8 +117,11 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="h-11"
+                className={`h-11 ${errors.password ? "border-destructive" : ""}`}
               />
+              {errors.password && (
+                <p className="text-sm text-destructive">{errors.password}</p>
+              )}
             </div>
 
             {/* Esqueci minha senha */}
