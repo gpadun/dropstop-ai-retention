@@ -25,11 +25,16 @@ const DashboardHeader = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <img 
-            src={logoDropStop} 
-            alt="DropStop Logo" 
-            className="h-20 sm:h-28 md:h-32 w-auto"
-          />
+          <button 
+            onClick={() => navigate("/dashboard")}
+            className="cursor-pointer hover:opacity-80 transition-opacity"
+          >
+            <img 
+              src={logoDropStop} 
+              alt="DropStop Logo" 
+              className="h-20 sm:h-28 md:h-32 w-auto"
+            />
+          </button>
         </div>
         
         <div className="flex items-center gap-4">
